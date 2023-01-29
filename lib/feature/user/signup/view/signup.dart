@@ -11,60 +11,84 @@ class SignUp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    TextEditingController nameController=TextEditingController();
+    TextEditingController emailController=TextEditingController();
+    TextEditingController passwordController=TextEditingController();
+    GlobalKey<FormState> formKey=GlobalKey<FormState>();
     return  Scaffold(
 
       backgroundColor: AppColors.backgroundColor,
       body: Container(margin:const EdgeInsets.symmetric(vertical:99,horizontal: 16 ),
 
-      child: Column(
-        children: [
-          Align(alignment: Alignment.centerLeft,child: Text(AppText.signUpText,style:const TextStyle(fontSize:34 ,fontWeight: FontWeight.w800 ),)),
-          const SizedBox(height: 73),
-          TextFeilWidget(label:"name" ,icon: Icons.check,colorIcon: AppColors.checkedIconColor,),
-          SizedBox(height: 8),
-          TextFeilWidget(label: "email",icon: Icons.check,colorIcon: AppColors.checkedIconColor,),
-          SizedBox(height: 8),
+      child: Form(
+        key: formKey,
+        child: Column(
+          children: [
+            Align(alignment: Alignment.centerLeft,child: Text(AppText.signUpText,style:const TextStyle(fontSize:34 ,fontWeight: FontWeight.w800 ),)),
+            const SizedBox(height: 73),
+            TextFeilWidget(controller: nameController,label:"name" ,icon: Icons.check,colorIcon: AppColors.checkedIconColor,),
+            SizedBox(height: 8),
+            TextFeilWidget(controller: emailController,label: "email",icon: Icons.check,colorIcon: AppColors.checkedIconColor,),
+            SizedBox(height: 8),
 
-          TextFeilWidget(label: "Password",icon: Icons.check,colorIcon: AppColors.checkedIconColor,),
+            TextFeilWidget(controller: passwordController,label: "Password",icon: Icons.check,colorIcon: AppColors.checkedIconColor,),
 
-         SizedBox(height: 16,),
+           SizedBox(height: 16,),
 
-          InkWell(
-            onTap:(){
-             Navigator.of(context).push(MaterialPageRoute(builder: (_){
-               return Login();
-             }));
+            InkWell(
+              onTap:(){
+               Navigator.of(context).push(MaterialPageRoute(builder: (_){
+                 return Login();
+               }));
 
-            },
+              },
 
-         child: Row(
-            mainAxisAlignment: MainAxisAlignment.end,
+           child: Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                const Text("Already have an account?",style: TextStyle(fontSize: 14,fontWeight: FontWeight.w500),),
+                const  SizedBox(width: 8,),
+                Image.asset("assets/images/arrow.png",width: 25,height: 15,)
+
+              ],
+            )
+            ),
+
+          SizedBox(height: 47,),
+            // GeneralButton(name: AppText.signUpCapital),
+        Container(
+          width: double.infinity,
+          child: ElevatedButton(
+
+              style: ButtonStyle(
+                  backgroundColor: MaterialStateProperty.all(AppColors.buttonColor)
+              )
+              ,onPressed:(){
+
+                if(formKey.currentState!.validate()){
+                  print("success");
+
+                }
+
+
+          }, child: Text("Sign Up")),
+        ),
+            SizedBox(height: 125,),
+          Text(AppText.socialText),
+          SizedBox(height: 12,),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const Text("Already have an account?",style: TextStyle(fontSize: 14,fontWeight: FontWeight.w500),),
-              const  SizedBox(width: 8,),
-              Image.asset("assets/images/arrow.png",width: 25,height: 15,)
-
+              Image.asset("${AppImages.biasImagePath}google.png",width: 100,height: 70,),
+              Image.asset("${AppImages.biasImagePath}facebook.png",width: 100,height: 70,),
             ],
           )
-          ),
 
-        SizedBox(height: 47,),
-          GeneralButton(name: AppText.signUpCapital),
-          SizedBox(height: 125,),
-        Text(AppText.socialText),
-        SizedBox(height: 12,),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Image.asset("${AppImages.biasImagePath}google.png",width: 100,height: 70,),
-            Image.asset("${AppImages.biasImagePath}facebook.png",width: 100,height: 70,),
+
+
+
           ],
-        )  
-
-
-
-
-        ],
+        ),
       ),
       )
     );

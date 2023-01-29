@@ -16,6 +16,9 @@ class Login extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    TextEditingController emailController=TextEditingController();
+    TextEditingController passwordController=TextEditingController();
     return  Scaffold(
 
         backgroundColor: AppColors.backgroundColor,
@@ -25,10 +28,10 @@ class Login extends StatelessWidget {
             children: [
               Align(alignment: Alignment.centerLeft,child: Text(AppText.logInText,style:const TextStyle(fontSize:34 ,fontWeight: FontWeight.w800 ),)),
               const SizedBox(height: 73),
-              TextFeilWidget(label: "email",colorIcon: AppColors.checkedIconColor,icon: Icons.check,),
+              TextFeilWidget(controller: emailController,label: "email",colorIcon: AppColors.checkedIconColor,icon: Icons.check,),
               SizedBox(height: 8),
 
-              TextFeilWidget(label: "Password",colorIcon: AppColors.checkedIconColor,icon: Icons.check,),
+              TextFeilWidget(controller: passwordController,label: "Password",colorIcon: AppColors.checkedIconColor,icon: Icons.check,),
 
               SizedBox(height: 16,),
 

@@ -9,18 +9,19 @@ class ForgetPassword extends StatelessWidget {
   const ForgetPassword({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
+    TextEditingController emailController=TextEditingController();
     return  Scaffold(
-
         backgroundColor: AppColors.backgroundColor,
-        body: Container(margin:const EdgeInsets.symmetric(vertical:99,horizontal: 16 ),
-
+        body: Container(
+          margin:const EdgeInsets.symmetric(
+              vertical:99,horizontal: 16 ),
           child: Column(
             children: [
               Align(alignment: Alignment.centerLeft,child: Text(AppText.forgotPasswordTitle,style:const TextStyle(fontSize:34 ,fontWeight: FontWeight.w800 ),)),
               const SizedBox(height: 73),
               Text(AppText.hintForgetPassword),
               SizedBox(height: 16,),
-              TextFeilWidget(label: "email",icon: Icons.close,colorIcon: AppColors.errorColor,),
+              TextFeilWidget(controller: emailController,label: "email",icon: Icons.close,colorIcon: AppColors.errorColor,),
               SizedBox(height: 8),
               GeneralButton(name: AppText.sendCapital),
               SizedBox(height: 125,),
